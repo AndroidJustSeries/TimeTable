@@ -27,6 +27,10 @@ public class TimeTableAdapter<T1,T2,T3> {
         notifyDataSetChanged();
     }
 
+    public List<T2> getWeekData() {
+        return weekData;
+    }
+
     public int getWeekCount() {
         return weekData!=null?weekData.size():0;
     }
@@ -35,6 +39,11 @@ public class TimeTableAdapter<T1,T2,T3> {
         indexData = data;
         notifyDataSetChanged();
     }
+
+    public List<T3> getIndexData() {
+        return indexData;
+    }
+
     public int getIndexCount() {
         return indexData!=null?indexData.size():0;
     }
