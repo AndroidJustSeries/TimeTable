@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TimeTableView">
+        <attr name="cellHeight" format="dimension" />
+        <attr name="indexWidth" format="dimension" />
+        <attr name="weekHeight" format="dimension" />
+
+        <attr name="cellBGColor" format="color" />
+        <attr name="cellStrokeColor" format="color" />
+        <attr name="cellStrokeWidth" format="dimension" />
+
+        <attr name="weekBGColor" format="color" />
+        <attr name="indexBGColor" format="color" />
+
+        <attr name="cellLayout" format="reference" />
+        <attr name="weekLayout" format="reference" />
+        <attr name="indexLayout" format="reference" />
+
+        <attr name="weekCount" format="integer" />
+        <attr name="lineCount" format="integer" />
+    </declare-styleable>
+</resources>

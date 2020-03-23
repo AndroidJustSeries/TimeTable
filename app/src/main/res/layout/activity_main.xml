@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#00ff00"
+        android:gravity="center_horizontal"
+        android:text="TimeTable" />
+
+    <com.kds.just.timetable.TimeTableView
+        android:id="@+id/timetableview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        app:cellBGColor="#f8f8f8"
+        app:cellHeight="30dp"
+        app:cellLayout="@layout/timetable_custom_cell"
+        app:cellStrokeColor="#f2f2f2"
+        app:cellStrokeWidth="0.3dp"
+        app:indexLayout="@layout/timetable_custom_index"
+        app:indexWidth="41dp"
+        app:weekHeight="73dp"
+        app:weekLayout="@layout/timetable_custom_weekday" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#00ff00"
+        android:gravity="center_horizontal"
+        android:text="End" />
+</LinearLayout>
