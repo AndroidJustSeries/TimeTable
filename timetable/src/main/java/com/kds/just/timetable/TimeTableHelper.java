@@ -128,6 +128,7 @@ public class TimeTableHelper implements OnClickListener {
 				mAdapter.getIndexCount() != mLineCount ) {
 				mWeekCount = mAdapter.getWeekCount() > 0?mAdapter.getWeekCount():7;
 				mLineCount = mAdapter.getIndexCount() > 0?mAdapter.getIndexCount():12;
+				removeViewAll();
 				mWeekArray = null;
 				mIndexArray = null;
 				mCellArray = null;
@@ -160,6 +161,29 @@ public class TimeTableHelper implements OnClickListener {
 				}
 			}
 		}
+	}
+
+	private void removeViewAll() {
+		if (mWeekArray != null) {
+			for (TimeTableItem item:mWeekArray) {
+				item.removeView();
+			}
+		}
+		if (mIndexArray != null) {
+			for (TimeTableItem item:mIndexArray) {
+				item.removeView();
+			}
+		}
+		if (mCellArray != null) {
+			for (int x=0;x<mWeekCount;x++) {
+				for (int y=0;y<mLineCount;y++) {
+					mCellArray[x][y].removeView();
+				}
+			}
+		}
+		mWeekArray = null;
+		mIndexArray = null;
+		mCellArray = null;
 	}
 
 	public int setViewSize(int w) {
