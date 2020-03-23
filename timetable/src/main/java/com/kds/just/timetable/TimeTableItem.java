@@ -36,6 +36,13 @@ public class TimeTableItem {
 	public int mCellDisplayWidth = 0;
 	public int mCellDisplayHeight = 0;
 
+	public Object mCustomData;
+	public void setCustomData(Object data) {
+		mCustomData = data;
+	}
+	public Object getCustomData() {
+		return mCustomData;
+	}
 	public static TimeTableItem createItem(TimeTableView parent, int type, int layoutId) {
 		TimeTableItem item = new TimeTableItem();
 		item.mType = type;
