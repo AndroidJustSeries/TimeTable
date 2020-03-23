@@ -119,7 +119,6 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected  void setIndexBind(View v, String data, int position) {
-            Log.e("","KDS3393_TEST_data " + data);
             ((TextView)v).setText(data);
         }
     }

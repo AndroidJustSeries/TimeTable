@@ -166,8 +166,7 @@ public class TimeTableHelper implements OnClickListener {
 		mWidth = w;
 
 		mCellWidth = (mWidth - mIndexWidth)/ mWeekCount;
-//		Log.e(TAG,"KDS3393_TEST_mHeight = " + mHeight + " mCellHeight = " + mCellHeight + " mEtcItemH = " + mBreakTimeHeight + " total = " + ((mCellHeight * (mLineCount + 1)) + (mBreakTimeHeight * mBreakTimeCnt)));
-		
+
 		int diff = mHeight - ((mCellHeight * mLineCount) + mWeekHeight); //높이 오차 수정
 		if (diff > 0) {
 			mWeekHeight += diff;
@@ -191,7 +190,6 @@ public class TimeTableHelper implements OnClickListener {
 			left = right;
 			right = left + mCellWidth;
 			mWeekArray[x].setRect(mIndexWidth + left,0,mCellWidth,mWeekHeight,0);
-//			Log.e(TAG,"KDS3393_TEST_draw l = " + mWeekArray[x].mLeft + " t = " + mWeekArray[x].mTop + " r = " + mWeekArray[x].mRight + " b = " + mWeekArray[x].mBottom);
 		}
 		
 		for (int y=0;y<mLineCount;y++) {	//Index
@@ -210,7 +208,6 @@ public class TimeTableHelper implements OnClickListener {
 				top = bottom;
 				bottom = top + mCellHeight;
 				mCellArray[x][y].setRect(mIndexWidth + left,mWeekHeight + top,mCellWidth,mCellHeight,0);
-//				Log.e(TAG,"KDS3393_TEST_draw l = " + mCellArray[x][y].mRect.left + " t = " + mCellArray[x][y].mRect.top + " r = " + mCellArray[x][y].mRect.right + " b = " + mCellArray[x][y].mRect.bottom);
 			}
 		}
 	}

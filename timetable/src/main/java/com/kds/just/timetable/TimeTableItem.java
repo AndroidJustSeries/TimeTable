@@ -76,19 +76,16 @@ public class TimeTableItem {
 			params.width = mCellDisplayWidth;
 			params.height = mCellDisplayHeight;
 			mView.setLayoutParams(params);
-//			Log.e(TAG,"KDS3393_TEST_setLayout l = " + mLeft + " t = " + mTop + " r = " + mRight + " b = " + mBottom);
 		}
 	}
 
 	public void drawNormal(Canvas canvas, Paint paint) {
 		canvas.drawRect(mRect.left, mRect.top, mRect.right, mRect.bottom, paint);
-//		Log.e(TAG,"KDS3393_TEST_draw l = " + mLeft + " t = " + mTop + " r = " + mRight + " b = " + mBottom);
 	}
 
 	public void drawNormal(Canvas canvas, Paint bgPaint, Paint strokePaint) {
 		canvas.drawRect(mRect.left, mRect.top, mRect.right, mRect.bottom, bgPaint);
 		canvas.drawRect(mRect.left, mRect.top, mRect.right, mRect.bottom, strokePaint);
-//		Log.e(TAG,"KDS3393_TEST_draw l = " + mLeft + " t = " + mTop + " r = " + mRight + " b = " + mBottom);
 	}
 
 	public void drawWeek(Canvas canvas, Paint paint, int right) {

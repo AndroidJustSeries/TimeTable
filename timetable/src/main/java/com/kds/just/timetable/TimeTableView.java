@@ -119,8 +119,6 @@ public class TimeTableView extends ViewGroup implements GestureDetector.OnGestur
 		playSoundEffect(0);
 		if (item != null) {
 			onClickRect(item);
-		} else {
-			Log.e(TAG,"KDS3393_TEST_onSingleTapUp item = null");
 		}
 		return false;
 	}
@@ -129,7 +127,6 @@ public class TimeTableView extends ViewGroup implements GestureDetector.OnGestur
 		if (item.mView != null && mOnCellClickListener != null) {
 			mOnCellClickListener.OnClick(item.mView, item.mX,item.mY);
 		}
-		Log.e(TAG,"KDS3393_TEST_onClickRect mX = " + item.mX + " mY = " + item.mY);
 	}
 
 	public void setWeekPaint(int color) {
@@ -162,8 +159,6 @@ public class TimeTableView extends ViewGroup implements GestureDetector.OnGestur
 
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-		Log.e(TAG,"KDS3393_TEST_onMeasure START");
-
 		final int widthMode = MeasureSpec.getMode(widthMeasureSpec);
 		final int layoutWidth = MeasureSpec.getSize(widthMeasureSpec);
 		final int heightMode = MeasureSpec.getMode(heightMeasureSpec);
@@ -177,8 +172,6 @@ public class TimeTableView extends ViewGroup implements GestureDetector.OnGestur
 				MeasureSpec.makeMeasureSpec(layoutHeight, MeasureSpec.EXACTLY));
 
 		setMeasuredDimension(layoutWidth, layoutHeight);
-
-		Log.e(TAG,"KDS3393_TEST_onMeasure END");
 	}
 
 
@@ -188,7 +181,6 @@ public class TimeTableView extends ViewGroup implements GestureDetector.OnGestur
 			return;
 		}
 		final int height = mHelper.setViewSize(r - l);
-		Log.e(TAG,"KDS3393_TEST_onLayout height = " + height);
 		if (height > 0) {
 			getLayoutParams().height = height;
 		}
@@ -216,7 +208,6 @@ public class TimeTableView extends ViewGroup implements GestureDetector.OnGestur
 
 	@Override
 	protected void onDraw(Canvas canvas) {
-		Log.e(TAG,"KDS3393_TEST_TimeTableView onDraw");
 		drawTimeTable(canvas);
 
 	}
