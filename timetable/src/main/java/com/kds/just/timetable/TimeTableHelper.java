@@ -175,8 +175,8 @@ public class TimeTableHelper implements OnClickListener {
 			}
 		}
 		if (mCellArray != null) {
-			for (int x=0;x<mWeekCount;x++) {
-				for (int y=0;y<mLineCount;y++) {
+			for (int x=0;x<mCellArray.length;x++) {
+				for (int y=0;y<mCellArray[x].length;y++) {
 					mCellArray[x][y].removeView();
 				}
 			}
