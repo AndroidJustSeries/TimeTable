@@ -42,7 +42,7 @@ public class TimeTableView extends ViewGroup implements GestureDetector.OnGestur
 //        <attr name="lineCount" format="integer" />
 
 		TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.TimeTableView);
-		mHelper.setWeekCount(ta.getInt(R.styleable.TimeTableView_weekCount,5));
+		mHelper.setWeekCount(ta.getInt(R.styleable.TimeTableView_weekCount,7));
 		mHelper.setLineCount(ta.getInt(R.styleable.TimeTableView_lineCount,10));
 
 		mHelper.setCellHeight(ta.getDimensionPixelSize(R.styleable.TimeTableView_cellHeight,Utils.dp2px(30)));

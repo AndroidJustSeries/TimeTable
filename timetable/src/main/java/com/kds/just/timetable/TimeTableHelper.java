@@ -126,8 +126,8 @@ public class TimeTableHelper implements OnClickListener {
 		if (mAdapter != null) {
 			if (mAdapter.getWeekCount() != mWeekCount ||
 				mAdapter.getIndexCount() != mLineCount ) {
-				mWeekCount = mAdapter.getWeekCount();
-				mLineCount = mAdapter.getIndexCount();
+				mWeekCount = mAdapter.getWeekCount() > 0?mAdapter.getWeekCount():7;
+				mLineCount = mAdapter.getIndexCount() > 0?mAdapter.getIndexCount():12;
 				mWeekArray = null;
 				mIndexArray = null;
 				mCellArray = null;
@@ -164,7 +164,9 @@ public class TimeTableHelper implements OnClickListener {
 
 	public int setViewSize(int w) {
 		mWidth = w;
-
+        if (mWeekCount == 0) {
+            return 0;
+        }
 		mCellWidth = (mWidth - mIndexWidth)/ mWeekCount;
 
 		int diff = mHeight - ((mCellHeight * mLineCount) + mWeekHeight); //높이 오차 수정
