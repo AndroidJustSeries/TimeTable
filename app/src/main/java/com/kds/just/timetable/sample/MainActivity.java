@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.kds.just.timetable.TimeTableAdapter;
 import com.kds.just.timetable.TimeTableView;
@@ -34,12 +35,20 @@ public class MainActivity extends AppCompatActivity {
         timeTableView.setOnCellClickListener(new TimeTableView.OnCellClickListener() {
             @Override
             public void OnClick(View v, int x, int y) {
-                if ('1' == mTimeAdapter.getCellData()[x].charAt(y)) {
-                    if (v.getBackground() == selectedColor) {
-                        v.setBackground(validColor);
-                    } else {
-                        v.setBackground(selectedColor);
+                if (v != null) {
+                    if ('1' == mTimeAdapter.getCellData()[x].charAt(y)) {
+                        if (v.getBackground() == selectedColor) {
+                            v.setBackground(validColor);
+                        } else {
+                            v.setBackground(selectedColor);
+                        }
                     }
+                } else {
+                    Toast.makeText(MainActivity.this,"[" + x + "," + y + "] " + mTimeAdapter.getCellData()[x].charAt(y), Toast.LENGTH_SHORT).show();
+                    StringBuilder build = new StringBuilder(mTimeAdapter.getCellData()[x]);
+                    build.setCharAt(y, '1');
+                    mTimeAdapter.getCellData()[x] = build.toString();
+                    mTimeAdapter.notifyDataSetChanged();
                 }
             }
         });
@@ -89,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public class TimeAdapter extends TimeTableAdapter<String[], TTWeekData,String> {
+    public class TimeAdapter extends TimeTableAdapter<String[], TTWeekData, String> {
 
         @Override
         public boolean isCreateCell(String[] data, int x, int y) {

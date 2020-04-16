@@ -124,7 +124,7 @@ public class TimeTableView extends ViewGroup implements GestureDetector.OnGestur
 	}
 
 	public void onClickRect(TimeTableItem item) {
-		if (item.mView != null && mOnCellClickListener != null) {
+		if (mOnCellClickListener != null) {
 			mOnCellClickListener.OnClick(item.mView, item.mX,item.mY);
 		}
 	}
