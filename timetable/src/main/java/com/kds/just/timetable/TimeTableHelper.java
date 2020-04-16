@@ -234,6 +234,7 @@ public class TimeTableHelper implements OnClickListener {
 				top = bottom;
 				bottom = top + mCellHeight;
 				mCellArray[x][y].setRect(mIndexWidth + left,mWeekHeight + top,mCellWidth,mCellHeight,0);
+				mCellArray[x][y].setLayout();
 			}
 		}
 	}

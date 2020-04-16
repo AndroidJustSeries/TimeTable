@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -82,7 +83,6 @@ public class TimeTableItem {
 			TimeTableView.LayoutParams params = (TimeTableView.LayoutParams) mView.getLayoutParams();
 			params.width = mCellDisplayWidth;
 			params.height = mCellDisplayHeight;
-			mView.setLayoutParams(params);
 		}
 	}
 
