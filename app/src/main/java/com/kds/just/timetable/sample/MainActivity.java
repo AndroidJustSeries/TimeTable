@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        TimeTableView timeTableView = findViewById(R.id.timetableview);
+        final TimeTableView timeTableView = findViewById(R.id.timetableview);
 
         mTimeAdapter = new TimeAdapter();
         timeTableView.setAdapter(mTimeAdapter);
@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
             public void OnClick(View v, int x, int y) {
                 if (v != null) {
                     if ('1' == mTimeAdapter.getCellData()[x].charAt(y)) {
+                        Log.e("T","KDS3393_TEST_[" + x + "," + y + "] child = " + timeTableView.getChildCount() + " v = " + v.getParent());
                         if (v.getBackground() == selectedColor) {
                             v.setBackground(validColor);
                         } else {
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                     StringBuilder build = new StringBuilder(mTimeAdapter.getCellData()[x]);
                     build.setCharAt(y, '1');
                     mTimeAdapter.getCellData()[x] = build.toString();
-                    mTimeAdapter.notifyDataSetChanged();
+                    mTimeAdapter.notifyDataSetChanged(x,y);
                 }
             }
         });
@@ -110,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
             TextView tv = (TextView) v;
             tv.setText(x + "," + y + "\n" + data[x].charAt(y));
             if ('1' == data[x].charAt(y)) {
-                tv.setBackgroundColor(Color.WHITE);
+                tv.setBackground(validColor);
             }
         }
 

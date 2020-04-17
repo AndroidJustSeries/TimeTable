@@ -122,16 +122,27 @@ public class TimeTableHelper implements OnClickListener {
 		return mAdapter;
 	}
 
+	void notifyDataSetChanged(int x, int y) {
+		if (mAdapter.isCreate(mCellArray[x][y])) {
+			if (mCellArray[x][y].mView == null) {
+				View view = mCellArray[x][y].makeView(mTimeTableView);
+			}
+			mAdapter.setBind(mCellArray[x][y]);
+		} else {
+			mCellArray[x][y].removeView();
+		}
+	}
+
 	void notifyDataSetChanged() {
 		if (mAdapter != null) {
 			if (mAdapter.getWeekCount() != mWeekCount ||
 				mAdapter.getIndexCount() != mLineCount ) {
+				//TODO 사용중인 View를 재활용할수 있는 방법 고민
 				mWeekCount = mAdapter.getWeekCount() > 0?mAdapter.getWeekCount():7;
 				mLineCount = mAdapter.getIndexCount() > 0?mAdapter.getIndexCount():12;
 				removeViewAll();
 				mWeekArray = null;
 				mIndexArray = null;
-				mCellArray = null;
 				build(mTimeTableView);
 			}
 			if (mWeekArray != null) {
@@ -147,7 +158,6 @@ public class TimeTableHelper implements OnClickListener {
 			if (mCellArray != null) {
 				for (int x=0;x<mWeekCount;x++) {
 					for (int y=0;y<mLineCount;y++) {
-						//TODO View가 안만들어졌을 경우와 이미 만들었던적이 있는 경우 어떻게 처리하나???
 						//TODO 다음 버전에서는 view를 삭제하지 않고 재활용할 방법을 생각해보자
 						if (mAdapter.isCreate(mCellArray[x][y])) {
 							if (mCellArray[x][y].mView == null) {

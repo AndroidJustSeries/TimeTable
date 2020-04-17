@@ -99,4 +99,10 @@ public class TimeTableAdapter<T1,T2,T3> {
             mTimeTableHelper.notifyDataSetChanged();
         }
     }
+
+    public void notifyDataSetChanged(int x, int y) {
+        if (mTimeTableHelper != null) {
+            mTimeTableHelper.notifyDataSetChanged(x,y);
+        }
+    }
 }

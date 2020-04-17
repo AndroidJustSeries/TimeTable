@@ -100,9 +100,11 @@ public class TimeTableItem {
 	}
 
 	public View makeView(ViewGroup parent) {
-		mView = LayoutInflater.from(parent.getContext()).inflate(mLayoutId, parent, false);
+		if (mView == null) {
+			mView = LayoutInflater.from(parent.getContext()).inflate(mLayoutId, parent, false);
+			parent.addView(mView);
+		}
 		mView.setTag(this);
-		parent.addView(mView);
 		return mView;
 	}
 
