@@ -26,6 +26,9 @@ public class TimeTableView extends ViewGroup implements GestureDetector.OnGestur
 	private GestureDetector mGestureDetector;
 
 	private OnCellClickListener mOnCellClickListener;
+
+	private int mStrokeWidth = Utils.dp2px(0.33f);
+
 	public interface OnCellClickListener {
 		void OnClick(View v, int x, int y);
 	}
@@ -53,9 +56,9 @@ public class TimeTableView extends ViewGroup implements GestureDetector.OnGestur
 		setIndexPaint(ta.getColor(R.styleable.TimeTableView_indexBGColor,Color.TRANSPARENT));
 
 		setCellBGPaint(ta.getColor(R.styleable.TimeTableView_cellBGColor,Color.TRANSPARENT));
-		setCellStrokePaint(ta.getColor(R.styleable.TimeTableView_cellStrokeColor,Color.GRAY),
-		ta.getDimensionPixelSize(R.styleable.TimeTableView_cellStrokeWidth,Utils.dp2px(0.33f)));
-
+		mStrokeWidth = ta.getDimensionPixelSize(R.styleable.TimeTableView_cellStrokeWidth,Utils.dp2px(0.33f));
+		setCellStrokePaint(ta.getColor(R.styleable.TimeTableView_cellStrokeColor,Color.GRAY), mStrokeWidth);
+		mHelper.setStrokeWidth(mStrokeWidth);
 
 		int weekLayoutId = ta.getResourceId(R.styleable.TimeTableView_weekLayout,R.layout.timetable_view_cell);
 		int indexLayoutId = ta.getResourceId(R.styleable.TimeTableView_indexLayout,R.layout.timetable_view_cell);
@@ -142,6 +145,7 @@ public class TimeTableView extends ViewGroup implements GestureDetector.OnGestur
 		mCellStrokePaint.setStyle(Paint.Style.STROKE);
 		mCellStrokePaint.setStrokeWidth(strokeWidth);
 		mCellStrokePaint.setAntiAlias(true);
+
 	}
 
 	public void setCellBGPaint(int color) {
@@ -223,11 +227,7 @@ public class TimeTableView extends ViewGroup implements GestureDetector.OnGestur
 			mHelper.mIndexArray[x].drawNormal(canvas, mIndexPaint);
 		}
 
-		for (int x=0;x<mHelper.mWeekCount;x++) {
-			for (int y=0;y<mHelper.mLineCount;y++) {
-				mHelper.mCellArray[x][y].drawNormal(canvas, mCellBGPaint, mCellStrokePaint);
-			}
-		}
+		mHelper.drawBackground(canvas,mCellBGPaint,mCellStrokePaint);
 	}
 
 	public static class LayoutParams extends FrameLayout.LayoutParams {

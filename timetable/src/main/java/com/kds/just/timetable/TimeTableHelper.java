@@ -1,6 +1,8 @@
 package com.kds.just.timetable;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -38,6 +40,7 @@ public class TimeTableHelper implements OnClickListener {
 	public int mCellWidth = 0;					//Cell 너비(자동설정)
 	public int mCellHeight = 0;					//Cell 높이
 
+	public int mStrokeWidth = 0;
 	private TimeTableAdapter mAdapter;		//Custom data View adapter
 
 	private TimeTableView mTimeTableView;
@@ -66,6 +69,10 @@ public class TimeTableHelper implements OnClickListener {
 
 	public void setWeekHeight(int h) {
 		mWeekHeight = h;
+	}
+
+	public void setStrokeWidth(int w) {
+		mStrokeWidth = w;
 	}
 
 	private int mWeekLayoutId;
@@ -201,7 +208,7 @@ public class TimeTableHelper implements OnClickListener {
         if (mWeekCount == 0) {
             return 0;
         }
-		mCellWidth = (mWidth - mIndexWidth)/ mWeekCount;
+		mCellWidth = (mWidth - mIndexWidth) / mWeekCount;
 
 		int diff = mHeight - ((mCellHeight * mLineCount) + mWeekHeight); //높이 오차 수정
 		if (diff > 0) {
@@ -225,30 +232,62 @@ public class TimeTableHelper implements OnClickListener {
 		for (int x=0;x<mWeekCount;x++) {	//요일
 			left = right;
 			right = left + mCellWidth;
-			mWeekArray[x].setRect(mIndexWidth + left,0,mCellWidth,mWeekHeight,0);
+			mWeekArray[x].setRect(mIndexWidth + left,0,mCellWidth,mWeekHeight);
+			mWeekArray[x].setLayout();
 		}
 		
 		for (int y=0;y<mLineCount;y++) {	//Index
 			top = bottom;
 			bottom = top + mCellHeight;
-			mIndexArray[y].setRect(0,mWeekHeight + top,mIndexWidth,mCellHeight,0);
+			mIndexArray[y].setRect(0,mWeekHeight + top,mIndexWidth,mCellHeight);
+			mIndexArray[y].setLayout();
 		}
-		left = 0;
 		right = 0;
+		int cellWidth = 0;
+		int cellHeight = 0;
 		for (int x=0;x<mWeekCount;x++) {
 			left = right;
 			right = left + mCellWidth;
-			top = 0;
 			bottom = 0;
+			if (x == mWeekCount - 1) {
+				cellWidth = mWidth - (mIndexWidth + left + (mStrokeWidth / 2));
+			} else {
+				cellWidth = mCellWidth;
+			}
 			for (int y=0;y<mLineCount;y++) {
 				top = bottom;
 				bottom = top + mCellHeight;
-				mCellArray[x][y].setRect(mIndexWidth + left,mWeekHeight + top,mCellWidth,mCellHeight,0);
+				if (y == mLineCount - 1) {
+					cellHeight = mHeight - (mWeekHeight + top + (mStrokeWidth / 2));
+				} else {
+					cellHeight = mCellHeight;
+				}
+				mCellArray[x][y].setRect(mIndexWidth + left + (mStrokeWidth / 2),
+										 mWeekHeight + top + (mStrokeWidth / 2),
+										cellWidth - mStrokeWidth,
+										cellHeight - mStrokeWidth);
 				mCellArray[x][y].setLayout();
 			}
 		}
 	}
-	
+
+	public void drawBackground(Canvas canvas, Paint bgPaint, Paint strokePaint) {
+
+		canvas.drawRect(mIndexWidth, mWeekHeight, mWidth - (mStrokeWidth/2), mHeight - (mStrokeWidth/2), bgPaint);
+		canvas.drawRect(mIndexWidth, mWeekHeight, mWidth - (mStrokeWidth/2), mHeight - (mStrokeWidth/2), strokePaint);
+
+		int width = mWidth - mIndexWidth;
+		int height = mHeight - mWeekHeight;
+		int wOffset = width / mWeekCount;
+		int hOffset = height / mLineCount;
+		for (int x=1;x<mWeekCount;x++) {
+			canvas.drawLine(mIndexWidth + (wOffset * x),mWeekHeight,mIndexWidth + (wOffset * x),mHeight,strokePaint);
+		}
+		for (int y=1;y<mLineCount;y++) {
+			canvas.drawLine(mIndexWidth,mWeekHeight + hOffset * y,mWidth,mWeekHeight + hOffset * y,strokePaint);
+		}
+	}
+
 	public TimeTableItem contains(MotionEvent event) {
 		for (int x=0;x<mWeekCount;x++) {
 			for (int y=0;y<mLineCount;y++) {

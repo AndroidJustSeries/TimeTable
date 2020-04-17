@@ -78,12 +78,12 @@ public class MainActivity extends AppCompatActivity {
         mTimeAdapter.setIndexData(times);
 
         String[] amCellData = {
-            "000100000001",
-            "000000000101",
-            "000000100001",
-            "000000010001",
+            "000100000000",
+            "000000000100",
+            "000000100000",
+            "000000010000",
             "000000001001",
-            "000010000001",
+            "000010000000",
             "001000000001"
         };
         String[] pmCellData = {

@@ -71,8 +71,8 @@ public class TimeTableItem {
 		mType = t;
 	}
 
-	public void setRect(int l,int t,int w,int h, int offset) {
-		mRect.set(l, t + offset, l + w, t + h + offset);
+	public void setRect(int l,int t,int w,int h) {
+		mRect.set(l, t, l + w, t + h);
 		mCellDisplayWidth = w;
 		mCellDisplayHeight = h;
 	}
@@ -135,10 +135,5 @@ public class TimeTableItem {
 		}
 
 		return type + ":" + mX + "," + mY;
-	}
-
-	public static int getRandomRGB() {
-		Random rnd = new Random();
-		return Color.parseColor("#" + String.format("%02X%02X%02X", rnd.nextInt(255),rnd.nextInt(255),rnd.nextInt(255)));
 	}
 }
